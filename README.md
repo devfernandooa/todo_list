@@ -235,6 +235,6 @@ Desenvolvedor Web | PHP • Laravel • JavaScript
 * 🌐 [Portfólio](https://devfernandooa.vercel.app/)
 * 📧 [Email](mailto:devfernandooa@gmail.com)
 
----
+------
 
 ⭐ Se este projeto foi útil para você, considere deixar uma estrela no repositório.
