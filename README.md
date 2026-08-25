@@ -1,115 +1,240 @@
-git push origin main# Todo List
+# 📝 Todo List
 
-Um sistema de gerenciamento de tarefas simples e eficiente, desenvolvido em PHP com MySQL, que permite aos usuários criar, editar, concluir e excluir tarefas. O projeto também suporta upload de imagens para cada tarefa.
+Sistema web de gerenciamento de tarefas desenvolvido em **PHP e MySQL**, com autenticação de usuários, gerenciamento de tarefas e upload de imagens.
 
-## Funcionalidades
+O projeto foi desenvolvido como aplicação prática para estudo e evolução de conceitos de **desenvolvimento web, PHP, banco de dados, organização de código e autenticação**.
 
--   **Cadastro de Usuários**: Criação de contas com validação de senha.
--   **Login e Logout**: Autenticação de usuários com sessões.
--   **Gerenciamento de Tarefas**:
-    -   Adicionar novas tarefas com título, descrição, data de conclusão e imagem.
-    -   Editar tarefas existentes.
-    -   Marcar tarefas como concluídas ou pendentes.
-    -   Excluir tarefas.
--   **Upload de Imagens**: Upload de imagens para tarefas com armazenamento organizado por usuário.
--   **Interface Responsiva**: Layout adaptável para diferentes dispositivos.
+---
 
-## Estrutura do Projeto
+## 🚀 Funcionalidades
 
-```plaintext
-[index.php](http://_vscodecontentref_/1)                # Página inicial com formulário de login.
-[README.md](http://_vscodecontentref_/2)                # Documentação do projeto.
-[todo_list.sql](http://_vscodecontentref_/3)            # Script SQL para criação do banco de dados.
-actions/                 # Scripts PHP para ações do sistema.
-    [adicionar_tarefa.php](http://_vscodecontentref_/4)
-    [cadastrar_action.php](http://_vscodecontentref_/5)
-    [concluir_tarefa.php](http://_vscodecontentref_/6)
-    [editar_tarefa.php](http://_vscodecontentref_/7)
-    [excluir_tarefa.php](http://_vscodecontentref_/8)
-    [logout.php](http://_vscodecontentref_/9)
-    [processa_editar_tarefa.php](http://_vscodecontentref_/10)
-    [processar_login.php](http://_vscodecontentref_/11)
-assets/                  # Arquivos estáticos (CSS, JS, imagens).
-    css/
-        [home_style.css](http://_vscodecontentref_/12)
-        [login_style.css](http://_vscodecontentref_/13)
-        [modal_editar_tarefa.css](http://_vscodecontentref_/14)
-    js/
-        [modal.js](http://_vscodecontentref_/15)
-        [scripts.js](http://_vscodecontentref_/16)
-includes/                # Arquivos de configuração e funções auxiliares.
-    [autenticacao.php](http://_vscodecontentref_/17)
-    [conexao.php](http://_vscodecontentref_/18)
-models/                  # Modelos para interação com o banco de dados.
-    [cadastro.php](http://_vscodecontentref_/19)
-    [tarefas.php](http://_vscodecontentref_/20)
-public/                  # Diretório público para uploads.
-    uploads/
-uploads/                 # Diretório para armazenar imagens de tarefas.
-views/                   # Páginas de visualização.
-    [cadastro_usuario.php](http://_vscodecontentref_/21)
-    [lista_tarefas.php](http://_vscodecontentref_/22)
+* 👤 Cadastro de usuários
+* 🔐 Login e logout
+* 🔒 Autenticação baseada em sessões
+* ➕ Criação de tarefas
+* ✏️ Edição de tarefas
+* ✅ Conclusão de tarefas
+* 🔄 Alteração entre tarefas pendentes e concluídas
+* 🗑️ Exclusão de tarefas
+* 🖼️ Upload de imagens nas tarefas
+* 📱 Interface responsiva
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+### Front-end
+
+* HTML5
+* CSS3
+* JavaScript
+
+### Back-end
+
+* PHP
+* PDO
+
+### Banco de dados
+
+* MySQL
+
+---
+
+## 🏗️ Estrutura do projeto
+
+```text
+todo_list/
+│
+├── actions/
+│   ├── adicionar_tarefa.php
+│   ├── cadastrar_action.php
+│   ├── concluir_tarefa.php
+│   ├── editar_tarefa.php
+│   ├── excluir_tarefa.php
+│   ├── logout.php
+│   ├── processa_editar_tarefa.php
+│   └── processar_login.php
+│
+├── assets/
+│   ├── css/
+│   └── js/
+│
+├── includes/
+│   ├── autenticacao.php
+│   └── conexao.php
+│
+├── models/
+│   ├── cadastro.php
+│   └── tarefas.php
+│
+├── public/
+│   └── uploads/
+│
+├── uploads/
+│
+├── views/
+│   ├── cadastro_usuario.php
+│   └── lista_tarefas.php
+│
+├── index.php
+└── todo_list.sql
 ```
 
-# Requisitos
+### Organização
 
-Servidor Web: Apache ou Nginx.
-PHP: Versão 7.4 ou superior.
-Banco de Dados: MySQL.
-Composer: Para gerenciar dependências (opcional).
-Configuração
-Clone o repositório:
+* **actions/** — Processamento das ações realizadas pelos usuários.
+* **assets/** — Arquivos estáticos, como CSS e JavaScript.
+* **includes/** — Configurações e recursos compartilhados pela aplicação.
+* **models/** — Operações relacionadas aos dados e ao banco de dados.
+* **views/** — Páginas e interfaces da aplicação.
+* **uploads/** — Armazenamento das imagens utilizadas pelas tarefas.
 
-# Configure o banco de dados:
+---
 
-Importe o arquivo todo_list.sql no seu banco de dados MySQL.
-Atualize as credenciais de conexão no arquivo includes/conexao.php.
+## ⚙️ Requisitos
 
-# Configure as permissões:
+Para executar o projeto localmente, você precisará de:
 
-Certifique-se de que o diretório uploads/ tem permissões de escrita.
+* PHP 7.4 ou superior
+* MySQL
+* Apache, Nginx ou servidor embutido do PHP
+* Git
 
-# Inicie o servidor:
+---
 
-Se estiver usando o PHP embutido:
-Acesse o sistema:
+## 📥 Instalação
 
-Abra o navegador e vá para http://localhost:8000.
+### 1. Clone o repositório
 
-# Uso
+```bash
+git clone https://github.com/devfernandooa/todo_list.git
+```
 
-## Cadastro:
+Entre no diretório:
 
-Acesse a página de cadastro em /views/cadastro_usuario.php e crie uma conta.
-Login:
+```bash
+cd todo_list
+```
 
-Faça login com suas credenciais na página inicial.
+---
 
-# Gerenciamento de Tarefas:
+### 2. Configure o banco de dados
 
-Adicione, edite, conclua ou exclua tarefas na página principal após o login.
-Tecnologias Utilizadas
-Frontend:
+Crie um banco de dados MySQL e importe o arquivo:
 
-HTML5, CSS3, JavaScript.
-Design responsivo com CSS puro.
-Backend:
+```text
+todo_list.sql
+```
 
-PHP para lógica do servidor.
-PDO para interação com o banco de dados.
-Banco de Dados:
+Depois, configure as credenciais do banco na aplicação.
 
-MySQL para armazenamento de dados.
-Contribuição
-Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
+> ⚠️ A configuração atual do projeto utiliza o arquivo `includes/conexao.php`. Em uma futura evolução do projeto, essa configuração será migrada para variáveis de ambiente.
 
-Faça um fork do repositório.
-Crie uma branch para sua feature ou correção:
-Faça commit das suas alterações:
-Envie para o repositório remoto:
-Abra um Pull Request.
-Licença
-Este projeto é licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
+---
 
-Autor
-Fernando de Oliveira Almeida - Desenvolvedor do projeto.
+### 3. Inicie o servidor
+
+Utilizando o servidor embutido do PHP:
+
+```bash
+php -S localhost:8000
+```
+
+Depois acesse:
+
+```text
+http://localhost:8000
+```
+
+---
+
+## 👤 Utilização
+
+### Cadastro
+
+Acesse a página de cadastro e crie uma nova conta.
+
+### Login
+
+Entre utilizando as credenciais cadastradas.
+
+### Tarefas
+
+Após o login, é possível:
+
+* criar tarefas;
+* editar tarefas;
+* concluir tarefas;
+* reabrir tarefas;
+* excluir tarefas;
+* adicionar imagens às tarefas.
+
+---
+
+## 🧠 Conceitos praticados
+
+Este projeto foi desenvolvido como parte da minha evolução em desenvolvimento web e permitiu praticar conceitos como:
+
+* PHP;
+* programação para aplicações web;
+* MySQL;
+* PDO;
+* CRUD;
+* autenticação;
+* sessões;
+* upload de arquivos;
+* organização de arquivos;
+* separação entre responsabilidades;
+* manipulação do DOM com JavaScript;
+* desenvolvimento de interfaces responsivas.
+
+---
+
+## 🔐 Segurança
+
+O projeto utiliza recursos como:
+
+* PDO para comunicação com o banco de dados;
+* autenticação por sessão;
+* validação de dados;
+* controle de acesso às funcionalidades autenticadas.
+
+> Este projeto possui caráter educacional e continua em evolução. Melhorias de segurança, arquitetura e testes fazem parte do roadmap de desenvolvimento.
+
+---
+
+## 🗺️ Roadmap
+
+* [ ] Melhorar a arquitetura da aplicação
+* [ ] Migrar configurações sensíveis para variáveis de ambiente
+* [ ] Melhorar validações
+* [ ] Aprimorar segurança dos uploads
+* [ ] Adicionar testes automatizados
+* [ ] Melhorar tratamento de erros
+* [ ] Melhorar documentação
+* [ ] Evoluir a interface
+* [ ] Avaliar migração futura para uma arquitetura mais estruturada
+
+---
+
+## 📚 Status do projeto
+
+🟡 **Projeto de estudo e evolução contínua**
+
+O projeto foi desenvolvido para consolidar conhecimentos de PHP, MySQL e desenvolvimento web. Algumas partes poderão ser refatoradas conforme novos conhecimentos de arquitetura, segurança e boas práticas forem adquiridos.
+
+---
+
+## 👨‍💻 Autor
+
+**Fernando de Oliveira Almeida**
+
+Desenvolvedor Web | PHP • Laravel • JavaScript
+
+* 💼 [LinkedIn](https://www.linkedin.com/in/devfernandooa/)
+* 🌐 [Portfólio](https://devfernandooa.vercel.app/)
+* 📧 [Email](mailto:devfernandooa@gmail.com)
+
+---
+
+⭐ Se este projeto foi útil para você, considere deixar uma estrela no repositório.
