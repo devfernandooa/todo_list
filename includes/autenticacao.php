@@ -21,8 +21,6 @@ function fazerLogin($email, $senha)
 
         header('Location: views/lista_tarefas.php');
     } else {
-        if ($usuario || password_verify($senha, $usuario['senha'])) {
-            echo "Usuário ou senha incorretos!";
-        }
+         echo "Usuário ou senha incorretos!";
     }
 }
