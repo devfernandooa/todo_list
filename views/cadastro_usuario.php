@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - Todo List</title>
-    <link rel="stylesheet" href="/todo_list/assets/css/login_style.css">
+    <link rel="stylesheet" href="/assets/css/login_style.css">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="/todo_list/actions/cadastrar_action.php" method="POST">
+                <form action="../actions/cadastrar_action.php" method="POST">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" required>
 
@@ -43,12 +43,12 @@
 
                     <button type="submit">Cadastrar</button>
                 </form>
-                <p>Já tem uma conta? <a href="../index.php">Faça login</a></p>
+                <p>Já tem uma conta? <a href="/index.php">Faça login</a></p>
             </div>
         </div>
     </div>
 
-    <script src="/todo_list/assets/js/scripts.js"></script>
+    <script src="/assets/js/scripts.js"></script>
 </body>
 
 </html>

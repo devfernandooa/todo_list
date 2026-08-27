@@ -11,7 +11,7 @@ require_once 'actions/processar_login.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão De Tarefas</title>
-    <link rel="stylesheet" href="/todo_list/assets/css/login_style.css">
+    <link rel="stylesheet" href="/assets/css/login_style.css">
 
 </head>
 
@@ -45,7 +45,7 @@ require_once 'actions/processar_login.php';
                     </form>
                 </div>
                 <div class="card-footer">
-                    <p>Não tem uma conta? <a href="/todo_list/views/cadastro_usuario.php">Cadastre-se</a></p>
+                    <p>Não tem uma conta? <a href="/views/cadastro_usuario.php">Cadastre-se</a></p>
                 </div>
                 <div class="card-footer">
                     <p> <a href="#">Esqueceu a senha?</a></p>

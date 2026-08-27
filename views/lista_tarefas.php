@@ -23,9 +23,9 @@ $tarefas = listarTarefas($id_usuario);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tarefas - Todo List</title>
-    <link rel="stylesheet" href="/todo_list/assets/css/home_style.css">
-    <link rel="stylesheet" href="/todo_list/assets/css/modal_excluir_tarefa.css">
-    <link rel="stylesheet" href="/todo_list/assets/css/modal_editar_tarefa.css  ">
+    <link rel="stylesheet" href="/assets/css/home_style.css">
+    <link rel="stylesheet" href="/assets/css/modal_excluir_tarefa.css">
+    <link rel="stylesheet" href="/assets/css/modal_editar_tarefa.css  ">
     <link rel=" stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
