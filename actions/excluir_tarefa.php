@@ -6,11 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtém o ID da tarefa a ser excluída
     $id_tarefa = $_POST['id_tarefa'];
 
-    // Verifica se o usuário tem permissão para excluir a tarefa
+    // Verifica se o usuário tem permissão para excluir a tarefa 
     $tarefa = buscarTarefaPorId($id_tarefa);
     if ($tarefa && $tarefa['id_usuario'] == $_SESSION['id_usuario']) {
         // Exclui a tarefa
-        if (excluirTarefa($id_tarefa)) {
+        if (excluirTarefa($id_tarefa, $_SESSION['id_usuario'])) {
             header('Location: ../views/lista_tarefas.php?sucesso=Tarefa excluída com sucesso!');
             exit();
         } else {
