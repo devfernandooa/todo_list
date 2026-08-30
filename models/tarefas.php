@@ -141,10 +141,13 @@ function excluirTarefa($id_tarefa)
 {
     global $pdo;
 
-    $sql = "DELETE FROM tarefas WHERE id_tarefa = :id_tarefa";
+    $sql = "DELETE FROM tarefas WHERE id_tarefa = :id_tarefa AND id_usuario = :id_usuario";
     try {
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([':id_tarefa' => $id_tarefa]);
+        $stmt->execute([
+            ':id_tarefa' => $id_tarefa,
+            ':id_usuario' => $id_usuario
+            ]);
         return true; // Tarefa excluída com sucesso
     } catch (PDOException $e) {
         error_log("Erro ao excluir tarefa: " . $e->getMessage());
