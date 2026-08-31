@@ -78,24 +78,26 @@ function buscarTarefaPorId($id_tarefa)
         return null; // Retorna null em caso de erro
     }
 }
-
-// Função para atualizar uma tarefa
 function atualizarTarefa(
-    $id_tarefa, 
-    $id_usuario, 
-    $titulo, 
-    $descricao, 
-    $data_conclusao, 
-    $imagem)
-{
+    $id_tarefa,
+    $id_usuario,
+    $titulo,
+    $descricao,
+    $data_conclusao,
+    $imagem
+) {
     global $pdo;
 
     $sql = "UPDATE tarefas
-            SET titulo = :titulo, descricao = :descricao, data_conclusao = :data_conclusao, imagem = :imagem
+            SET titulo = :titulo,
+                descricao = :descricao,
+                data_conclusao = :data_conclusao,
+                imagem = :imagem
             WHERE id_tarefa = :id_tarefa
             AND id_usuario = :id_usuario";
+
     try {
-        
+
         $stmt = $pdo->prepare($sql);
 
         $stmt->execute([
@@ -107,13 +109,13 @@ function atualizarTarefa(
             ':id_usuario' => $id_usuario
         ]);
 
-        return true; // Tarefa atualizada com sucesso
+        return true;
 
     } catch (PDOException $e) {
 
         error_log("Erro ao atualizar tarefa: " . $e->getMessage());
-        return false; // Falha ao atualizar tarefa
-        
+
+        return false;
     }
 }
 
