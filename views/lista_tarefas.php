@@ -197,10 +197,10 @@ $tarefas = listarTarefas($id_usuario);
         </div>
     </div>
 
-    <script src="/todo_list/assets/js/modal.js">
+    <script src="/assets/js/modal.js">
 
     </script>
-    <script src="/todo_list/assets/js/scripts.js">
+    <script src="/assets/js/scripts.js">
 
     </script>
     <script>
