@@ -80,21 +80,25 @@ function buscarTarefaPorId($id_tarefa)
 }
 
 // Função para atualizar uma tarefa
-function atualizarTarefa($id_tarefa, $titulo, $descricao, $data_conclusao, $imagem)
+function atualizarTarefa($id_tarefa, $id_usuario, $titulo, $descricao, $data_conclusao, $imagem)
 {
     global $pdo;
 
     $sql = "UPDATE tarefas
             SET titulo = :titulo, descricao = :descricao, data_conclusao = :data_conclusao, imagem = :imagem
-            WHERE id_tarefa = :id_tarefa";
+            WHERE id_tarefa = :id_tarefa
+            AND id_usuario = :id_usuario";
     try {
+        
         $stmt = $pdo->prepare($sql);
+
         $stmt->execute([
             ':titulo' => $titulo,
             ':descricao' => $descricao,
             ':data_conclusao' => $data_conclusao,
             ':imagem' => $imagem,
-            ':id_tarefa' => $id_tarefa
+            ':id_tarefa' => $id_tarefa,
+            ':id_usuario' => $id_usuario
         ]);
         return true; // Tarefa atualizada com sucesso
     } catch (PDOException $e) {
@@ -137,7 +141,7 @@ function buscarImagensTarefa($id_tarefa)
     }
 }
 
-function excluirTarefa($id_tarefa)
+function excluirTarefa($id_tarefa, $id_usuario)
 {
     global $pdo;
 
@@ -147,7 +151,7 @@ function excluirTarefa($id_tarefa)
         $stmt->execute([
             ':id_tarefa' => $id_tarefa,
             ':id_usuario' => $id_usuario
-            ]);
+        ]);
         return true; // Tarefa excluída com sucesso
     } catch (PDOException $e) {
         error_log("Erro ao excluir tarefa: " . $e->getMessage());

@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Atualiza a tarefa no banco de dados
-    if (atualizarTarefa($id_tarefa, $titulo, $descricao, $data_conclusao, $imagem)) {
+    if (atualizarTarefa($id_tarefa,$id_usuario, $titulo, $descricao, $data_conclusao, $imagem)) {
         header('Location: ../views/lista_tarefas.php?sucesso=Tarefa atualizada com sucesso!');
         exit();
     } else {
