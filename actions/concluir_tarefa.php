@@ -15,7 +15,10 @@ if (isset($_GET['id'])) {
         $novo_status = $tarefa['concluida'] ? 0 : 1;
 
         // Atualiza o status da tarefa no banco de dados
-        if (atualizarStatusTarefa($id_tarefa, $novo_status)) {
+        if (atualizarStatusTarefa(
+            $id_tarefa, 
+            $_SESSION['id_usuario'],
+            $novo_status)) {
             header('Location: ../views/lista_tarefas.php?sucesso=Tarefa atualizada com sucesso!');
             exit();
         } else {

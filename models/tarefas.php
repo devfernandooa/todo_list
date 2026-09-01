@@ -171,16 +171,19 @@ function excluirTarefa($id_tarefa, $id_usuario)
     }
 }
 
-function atualizarStatusTarefa($id_tarefa, $concluida)
+function atualizarStatusTarefa($id_tarefa, $id_usuario, $concluida)
 {
     global $pdo;
 
-    $sql = "UPDATE tarefas SET concluida = :concluida WHERE id_tarefa = :id_tarefa";
+    $sql = "UPDATE tarefas SET concluida = :concluida 
+    WHERE id_tarefa = :id_tarefa
+    AND id_usuario = :id_usuario";
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':concluida' => $concluida,
-            ':id_tarefa' => $id_tarefa
+            ':id_tarefa' => $id_tarefa,
+            ':id_usuario' => $id_usuario,
         ]);
         return true; // Status atualizado com sucesso
     } catch (PDOException $e) {
