@@ -127,12 +127,19 @@ $tarefas = listarTarefas($id_usuario);
                                     class="fas fa-edit"></i>Editar
                             </button>
 
-                            <button class="btn-concluir">
-                                <a href="../actions/concluir_tarefa.php?id=<?= $tarefa['id_tarefa']; ?>" class="btn-concluir">
-                                    <i class="far fa-check-circle"></i></i>
-                                    <?= $tarefa['concluida'] ? 'Desmarcar Conclusão' : 'Concluir'; ?>
-                                </a>
-                            </button>
+                            <form action="../actions/concluir_tarefa.php" method="POST">
+
+                                <input type="hidden" name="id_tarefa" value="<?= $tarefa['id_tarefa']; ?>">
+
+                                <button type="submit" class="btn-concluir">
+                                    <i class="far fa-check-circle"></i>
+
+                                    <?= $tarefa['concluida']
+                                        ? 'Desmarcar Conclusão'
+                                        : 'Concluir'; ?>
+                                </button>
+
+                            </form>
 
                             <button class="btn-excluir" onclick="abrirModalExcluir(<?= $tarefa['id_tarefa']; ?>)"> <i
                                     class="fas fa-trash"></i>Excluir</button>
