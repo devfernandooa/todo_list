@@ -7,31 +7,24 @@ if (!isset($_SESSION['id_usuario'])) {
     header('Location: login.php');
     exit();
 }
-
 $id_usuario = $_SESSION['id_usuario'];
 $tarefas = listarTarefas($id_usuario);
 //var_dump($tarefas);
-
-
-
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tarefas - Todo List</title>
-    <link rel="stylesheet" href="/assets/css/home_style.css">
-    <link rel="stylesheet" href="/assets/css/modal_excluir_tarefa.css">
-    <link rel="stylesheet" href="/assets/css/modal_editar_tarefa.css  ">
+    <link rel="stylesheet" href="../assets/css/home_style.css">
+    <link rel="stylesheet" href="../assets/css/modal_excluir_tarefa.css">
+    <link rel="stylesheet" href="../assets/css/modal_editar_tarefa.css  ">
     <link rel=" stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
 </head>
-
-
 <body>
     <div class="container">
         <!-- Header -->
@@ -96,7 +89,6 @@ $tarefas = listarTarefas($id_usuario);
                     <div class="tarefa">
                         <h3>Titulo: <?= htmlspecialchars($tarefa['titulo']); ?></h3>
                         <p>Descrição: <?= htmlspecialchars($tarefa['descricao']); ?></p>
-
 
                         <?php if (!empty($tarefa['imagem'])): ?>
 
@@ -197,10 +189,8 @@ $tarefas = listarTarefas($id_usuario);
         </div>
     </div>
 
-    <script src="/assets/js/modal.js">
-
-    </script>
-    <script src="/assets/js/scripts.js">
+    <script src="../assets/js/modal.js"></script>
+    <script src="../assets/js/scripts.js">
 
     </script>
     <script>
