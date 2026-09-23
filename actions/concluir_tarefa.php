@@ -3,8 +3,9 @@ session_start();
 require_once '../models/tarefas.php';
 
 // Verifica se o ID da tarefa foi passado
-if (isset($_GET['id'])) {
-    $id_tarefa = $_GET['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    $id_tarefa = $_POST['id_tarefa'];
 
     // Busca a tarefa pelo ID
     $tarefa = buscarTarefaPorId($id_tarefa);
