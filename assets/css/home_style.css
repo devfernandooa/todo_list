@@ -1,268 +1,481 @@
-/* Estilos Gerais */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* ==========================================================================
+   Variáveis e Paleta de Cores
+   ========================================================================== */
+:root {
+    --primary: #3366FF;
+    --primary-dark: #254edb;
+    --success: #2CD353;
+    --info: #49AEFC;
+    --warning: #FFEC1C;
+    --danger: #FF463F;
+    --secondary: var(--primary);
+
+    --bg-body: #f4f6f9;
+    --bg-card: #ffffff;
+    --bg-sidebar: #0f172a;
+
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --text-light: #ffffff;
+
+    --border: #e2e8f0;
+    --radius: 8px;
+    --shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+/* ==========================================================================
+   Reset e Configuração Global
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 2px 1px 18px #1a5bbf90;
-    border-radius: 10px;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-dark);
 }
 
-/* Header */
-header {
+.app-layout {
     display: flex;
-    flex-wrap: wrap;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   Barra Lateral (Sidebar)
+   ========================================================================== */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #1e293b 0%, var(--bg-sidebar) 100%);
+    color: var(--text-light);
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    background: radial-gradient(circle, #1a5bbf90, #2575fc);
-    padding: 15px 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    row-gap: 15px;
+    padding: 24px;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 100;
 }
 
-header h2, h5 {
-    margin: 0;
-    color: #ffffff;
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.header-title, .header-login {
-    width: 100%;
+.user-profile .avatar {
+    font-size: 2.5rem;
+    color: var(--primary);
 }
 
-.header-button {
-    width: 100%;
-    text-align: right;
+.user-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
 }
 
-.btn-logout {
-    background-color: #2575fc;
-    color: white;
-    padding: 5px 10px;
+.user-info p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.sidebar-menu {
+    margin-top: 24px;
+    flex-grow: 1;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    border-radius: var(--radius);
+    transition: 0.2s;
+}
+
+.sidebar-menu li.active a,
+.sidebar-menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+}
+
+.sidebar-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 16px;
 }
 
 .current-time {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
     gap: 8px;
-    color: #fff;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 12px;
 }
 
-.current-time p{
-    font-size: 1rem;
-    color: #fff;
-    
+.btn-logout {
+    display: block;
+    text-align: center;
+    background-color: var(--danger);
+    color: #ffffff;
+    padding: 10px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid var(--danger);
+    transition: 0.2s;
 }
 
 .btn-logout:hover {
-    background-color: #6a11cb;
+    background-color: transparent;
+    color: var(--danger);
 }
 
-/* Formulário de Tarefas */
-.form-tarefa {
+/* ==========================================================================
+   Área Principal
+   ========================================================================== */
+.main-content {
+    margin-left: 280px;
+    flex-grow: 1;
+    padding: 32px;
+    max-width: 1000px;
+}
+
+.card-section {
+    background-color: var(--bg-card);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+}
+
+.card-section h2 {
+    font-size: 1.25rem;
     margin-bottom: 20px;
-    padding: 20px;
-    border: 2px solid #2575fc;
-    border-radius: 5px;
-    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
 }
 
-.form-tarefa input,
+/* Formulário */
+.form-tarefa input[type="text"],
+.form-tarefa input[type="date"],
 .form-tarefa textarea {
-    width: 97%;
-    max-width: 96%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #4d0d9b99;
-    border-radius: 5px;
-    box-shadow: 2px 1px 18px #1a5bbf90;
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 0.9rem;
 }
 
 .form-tarefa input:focus,
 .form-tarefa textarea:focus {
-    border-color: #6a11cb;
     outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(51, 102, 255, 0.15);
 }
 
-.form-tarefa button {
-    background-color: #6a11cb;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Input File (Procurar...) */
+.form-tarefa input[type="file"] {
+    width: 100%;
+    padding: 3px !important;
+    background-color: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
 }
 
-.form-tarefa button:hover {
-    background-color: #4d0d9b;
+.form-tarefa input[type="file"]::file-selector-button,
+.form-tarefa input[type="file"]::-webkit-file-upload-button {
+    background-color: var(--primary);
+    color: #ffffff;
+    border: 2px solid var(--primary);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-right: 10px;
+    transition: all 0.2s ease-in-out;
 }
 
-/* Lista de Tarefas */
-.lista-tarefas {
-    margin-top: 20px;
+.form-tarefa input[type="file"]::file-selector-button:hover,
+.form-tarefa input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: transparent !important;
+    color: var(--primary) !important;
 }
 
-.tarefa {
-    background-color: #d3cef3;
-    padding: 15px;
-    margin-bottom: 10px;
-    border: 2px solid #2575fc;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* ==========================================================================
+   Botões
+   ========================================================================== */
+/* ==========================================================================
+   Botão Criar Tarefa (Outline com Fundo Branco)
+   ========================================================================== */
+button.btn-submit,
+.btn-submit {
+    background-color: #ffffff !important;
+    color: var(--primary) !important;
+    border: 2px solid var(--primary) !important;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.tarefa h3 {
-    margin: 0 0 10px;
-    color: #1a5bbf;
+/* Hover: Preenche o botão de azul e texto branco */
+button.btn-submit:hover,
+.btn-submit:hover {
+    background-color: var(--primary) !important;
+    color: #ffffff !important;
 }
 
-.tarefa p {
-    margin: 5px 0;
-    color: #333333;
-}
 
-.imagem-tarefa {
-    width: 45%;
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-    border-radius: 5px;
+/* ==========================================================================
+   Botões de Ação na Lista de Tarefas
+   ========================================================================== */
+.acoes {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
 }
 
 .acoes button {
-    margin-right: 10px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
+    padding: 8px 14px;
+    border-radius: var(--radius);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.btn-concluir {
-    background-color: #4d0d9b;
-    color: #fff;
-    font-size: 0.8rem;
-    text-decoration: none;    
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
+/* Botão Editar (Azul Info) */
+.acoes button.btn-editar {
+    background-color: var(--info);
+    color: #ffffff;
+    border: 2px solid var(--info);
+}
+
+.acoes button.btn-editar:hover {
+    background-color: transparent;
+    color: var(--info);
+}
+
+/* Botão Desmarcar / Concluir (Azul Primário) */
+.acoes button.btn-concluir {
+    background-color: var(--primary);
+    color: #ffffff;
+    border: 2px solid var(--primary);
+}
+
+.acoes button.btn-concluir:hover {
+    background-color: transparent;
+    color: var(--primary);
+}
+
+/* Botão Excluir (Outline com Fundo Branco) */
+.acoes button.btn-excluir,
+.btn-excluir {
+    background-color: #ffffff !important;
+    color: var(--danger) !important;
+    border: 2px solid var(--danger) !important;
+}
+
+/* Hover: Preenche o botão de vermelho e texto branco */
+.acoes button.btn-excluir:hover,
+.btn-excluir:hover {
+    background-color: var(--danger) !important;
+    color: #ffffff !important;
+}
+/* Contentor dos botões de ação */
+.acoes {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.acoes button {
+    padding: 8px 14px;
+    border-radius: var(--radius);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.btn-concluir:hover {
-    background-color: #6a11cb;
-}
-
+/* Botão Editar (Sólido Azul) */
 .btn-editar {
-    background-color: #2575fc;
-    color: white;
+    background-color: var(--info);
+    color: #ffffff;
+    border: 2px solid var(--info);
 }
 
 .btn-editar:hover {
-    background-color: #1a5bbf;
+    background-color: transparent;
+    color: var(--info);
 }
 
+/* Botão Concluir / Desmarcar (Sólido Primary/Azul) */
+.btn-concluir {
+    background-color: var(--primary);
+    color: #ffffff;
+    border: 2px solid var(--primary);
+}
+
+.btn-concluir:hover {
+    background-color: transparent;
+    color: var(--primary);
+}
+
+/* Botão OUTLINE: Excluir (Fundo branco, borda vermelha, texto vermelho) */
 .btn-excluir {
-    background-color: #ff4d4d;
-    color: white;
+    background-color: #ffffff;
+    color: var(--danger);
+    border: 2px solid var(--danger);
 }
 
 .btn-excluir:hover {
-    background-color: #cc0000;
+    background-color: var(--danger);
+    color: #ffffff;
 }
 
-/* Responsividade */
+/* ==========================================================================
+   Acordeão (Lista de Tarefas)
+   ========================================================================== */
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.accordion-item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background-color: #ffffff;
+    transition: 0.2s;
+}
+
+.accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.accordion-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chevron-icon {
+    transition: transform 0.3s ease;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.accordion-item.active .chevron-icon {
+    transform: rotate(90deg);
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #f8fafc;
+}
+
+.accordion-item.active .accordion-body {
+    max-height: 500px;
+    border-top: 1px solid var(--border);
+}
+
+.accordion-content-inner {
+    padding: 16px;
+}
+
+.imagem-tarefa {
+    max-width: 200px;
+    border-radius: var(--radius);
+    margin: 12px 0;
+}
+
+/* Badges de Status */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.status-pendente { 
+    background: #fffbeb; 
+    color: #b45309; 
+    border: 1px solid var(--warning);
+}
+
+.status-concluida { 
+    background: #f0fdf4; 
+    color: #15803d; 
+    border: 1px solid var(--success);
+}
+
+/* Responsivo */
 @media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-
-    header {
+    .app-layout {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
     }
-
-    .header-title, .header-login {
+    .sidebar {
         width: 100%;
-        text-align: center;
+        height: auto;
+        position: relative;
     }
-
-    .header-button {
-        width: 100%;
-        text-align: center;
+    .main-content {
+        margin-left: 0;
+        padding: 16px;
     }
-    .current-time {
-       justify-content: center;
-       gap: 4px;
-    }
-    .form-tarefa input,
-    .form-tarefa textarea {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .tarefa {
-        padding: 10px;
-    }
-
-    .acoes button {
-        width: 100%;
-        margin: 5px 0;
-    }
-    .imagem-tarefa {
-        width: 100%;
-    }
-    
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
-
-    header {
-        padding: 10px;
-    }
-
-    .current-time p {
-        font-size: 0.8rem;       
-    }
-    
-    .form-tarefa {
-        padding: 10px;
-    }
-
-    .form-tarefa button {
-        width: 100%;
-    }
-
-    .tarefa h3 {
-        font-size: 1.2rem;
-    }
-
-    .tarefa p {
-        font-size: 0.9rem;
-    }
-
-    .acoes button {
-        font-size: 0.8rem;
-    }
-    .btn-concluir a {
-        width: 100%;
+    .form-row {
+        grid-template-columns: 1fr;
     }
 }
