@@ -3,8 +3,11 @@
 session_start();
 
 require_once '../models/tarefas.php';
+require_once __DIR__ . '/../includes/autenticacao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    verificarAutenticacao();
 
     $id_tarefa = $_POST['id_tarefa'];
     $titulo = $_POST['titulo'];
