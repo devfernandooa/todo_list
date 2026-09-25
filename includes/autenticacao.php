@@ -6,7 +6,7 @@ function fazerLogin($email, $senha)
     global $pdo; // Usa a conexão PDO definida em conexao.php
 
     // Prepara a consulta SQL
-    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
+    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email AND ativo = 1");
     $stmt->bindParam(':email', $email);
     $stmt->execute();
 
