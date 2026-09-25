@@ -4,7 +4,7 @@ session_start();
 require_once '../includes/csrf.php';
 
 if (!isset($_SESSION['id_usuario'])) {
-    header('Location: login.php');
+    header('Location: ../index.php');
     exit();
 }
 $id_usuario = $_SESSION['id_usuario'];
