@@ -24,3 +24,10 @@ function fazerLogin($email, $senha)
          echo "Usuário ou senha incorretos!";
     }
 }
+
+function verificarAutenticacao() {
+    if(!isset($_SESSION['id_usuario'])) {
+        header('Location: ../index.php');
+        exit();
+    }
+}

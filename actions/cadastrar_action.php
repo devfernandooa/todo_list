@@ -18,6 +18,7 @@ if(
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
     if (cadastrarUsuario($nome, $email, $senha)) {
+        
         header('Location: ../index.php');
     } else {
         header('Location: ../index.php');
