@@ -1,8 +1,16 @@
 <?php
-
-require_once '../models/cadastro.php';
+session_start();
+require_once __DIR__ . '/../includes/csrf.php';
+require_once __DIR__ . '/../models/cadastro.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+if(
+    !isset($_POST['csrf_token']) || !validarTokenCSRF($_POST['csrf_token'])    
+    ) {
+    die('Token CSRF inválido!');
+}
+
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];

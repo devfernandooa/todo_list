@@ -1,6 +1,7 @@
 <?php
 
 require_once 'actions/processar_login.php';
+require_once 'includes/csrf.php';
 
 ?>
 
@@ -35,6 +36,7 @@ require_once 'actions/processar_login.php';
                 </div>
                 <div class="card-body">
                     <form method="POST" action="">
+                        <input type="hidden" name="csrf_token" value="<?=gerarTokenCSRF()?>">
                         <label for="email">E-Mail:</label>
                         <input type="email" name="email" id="email" required>
 

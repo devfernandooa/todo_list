@@ -1,10 +1,14 @@
 <?php
 session_start();
+require_once __DIR__ . '/../includes/csrf.php';
 require_once '../includes/conexao.php';
 require_once '../models/tarefas.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if(!isset($_POST['csrf_token']) || !validarTokenCSRF($_POST['csrf_token'])){
+        die('Token CSRF inválido!');
+    }
     $titulo = $_POST['titulo'];
     $descricao = $_POST['descricao'];
     $data_conclusao = $_POST['data_conclusao'];

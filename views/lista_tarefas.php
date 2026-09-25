@@ -1,6 +1,7 @@
 <?php
 require_once '../models/tarefas.php';
 session_start();
+require_once '../includes/csrf.php';
 
 if (!isset($_SESSION['id_usuario'])) {
     header('Location: login.php');
@@ -61,6 +62,7 @@ $tarefas = listarTarefas($id_usuario);
             <section id="form-tarefa-section" class="card-section">
                 <h2><i class="fas fa-plus-circle"></i> Adicionar Nova Tarefa</h2>
                 <form action="../actions/adicionar_tarefa.php" method="POST" enctype="multipart/form-data" class="form-tarefa">
+                    <input type="hidden" name="csrf_token" value="<?=gerarTokenCSRF();?>">
                     <div class="form-group">
                         <input type="text" name="titulo" placeholder="Título da tarefa" required>
                     </div>
@@ -148,6 +150,7 @@ $tarefas = listarTarefas($id_usuario);
                                             </button>
 
                                             <form action="../actions/concluir_tarefa.php" method="POST" class="form-inline">
+                                                <input type="hidden" name="csrf_token" value="<?= gerarTokenCSRF(); ?>">
                                                 <input type="hidden" name="id_tarefa" value="<?= $tarefa['id_tarefa']; ?>">
                                                 <button type="submit" class="btn-concluir">
                                                     <i class="far <?= $tarefa['concluida'] ? 'fa-undo' : 'fa-check-circle'; ?>"></i>
@@ -175,6 +178,7 @@ $tarefas = listarTarefas($id_usuario);
                     <p class="tarefa-id-info"><strong>ID:</strong> <span id="id-tarefa-editar"></span></p>
 
                     <form id="form-editar-tarefa" action="../actions/processa_editar_tarefa.php" method="POST" enctype="multipart/form-data" class="form-editar">
+                        <input type="hidden" name="csrf_token" value="<?= gerarTokenCSRF(); ?>">
                         <input type="hidden" id="id_tarefa" name="id_tarefa">
 
                         <div class="form-group">
@@ -225,6 +229,7 @@ $tarefas = listarTarefas($id_usuario);
                     <h2>Confirmar Exclusão</h2>
                     <p>Tem certeza de que deseja excluir esta tarefa?</p>
                     <form id="form-excluir-tarefa" method="POST" action="../actions/excluir_tarefa.php">
+                        <input type="hidden" name="csrf_token" value="<?=gerarTokenCSRF();?>">
                         <input type="hidden" id="id_tarefa_excluir" name="id_tarefa">
                         <div class="modal-botoes">
                             <button type="button" class="btn-descartar" onclick="fecharModalExcluir()">Cancelar</button>

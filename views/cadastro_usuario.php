@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    require_once '../includes/csrf.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -29,6 +33,7 @@
             </div>
             <div class="card-body">
                 <form action="../actions/cadastrar_action.php" method="POST">
+                    <input type="hidden" name="csrf_token" value="<?=gerarTokenCSRF();?>">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" required>
 

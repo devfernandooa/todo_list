@@ -4,9 +4,9 @@ function gerarTokenCSRF() {
         $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     }
 
-    return $_SESSION['crsf_token'];
+    return $_SESSION['csrf_token'];
 }
 
-function validarTokenCRSF($token) {
+function validarTokenCSRF($token) {
     return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
 }

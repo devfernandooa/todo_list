@@ -1,8 +1,14 @@
 <?php
 session_start();
+require_once __DIR__ . '/../includes/csrf.php';
 require_once '../models/tarefas.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if(!isset($_POST['csrf_token']) || !validarTokenCSRF($_POST['csrf_token'])) {
+        header('Location: ../views/lista_tarefas.php?erro=Token CSRF inválido');
+        exit();
+    }
     // Obtém os dados do formulário
     $id_tarefa = $_POST['id_tarefa'];
     $titulo = $_POST['titulo'];

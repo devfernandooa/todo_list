@@ -1,12 +1,16 @@
 <?php
 session_start();
 require_once '../models/tarefas.php';
+require_once '../includes/csrf.php';
 
 // Verifica se o ID da tarefa foi passado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+        
+    if(!isset($_POST['csrf_token']) || !validarTokenCSRF($_POST['csrf_token'])){
+        header('Location: ../views/lista_tarefas.php?erro=Token CSRF inválido.');
+        exit();
+    }
     $id_tarefa = $_POST['id_tarefa'];
-
     // Busca a tarefa pelo ID
     $tarefa = buscarTarefaPorId($id_tarefa);
 
